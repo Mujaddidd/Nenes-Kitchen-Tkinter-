@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
+from PIL import Image, ImageTk
 
 # MenuItem class to store menu item details
 class MenuItem:
@@ -18,15 +19,24 @@ class NenesKitchenOrderingSystem:
 
         # Sample menu items
         self.menu_items = [
-            MenuItem("Burger", "Delicious and juicy burger", 5.99),
-            MenuItem("Pizza", "Cheesy and tasty pizza", 12.99),
-            MenuItem("Pasta", "Italian pasta with marinara sauce", 9.99),
+            MenuItem("Thieboundienne", "Senegalese Jollof", 15.99),
+            MenuItem("Yassa", "Sauted Onions ", 12.99),
+            MenuItem("Attieke", "Fermentaed Casva", 9.99),
         ]
+
+        # Load images and create ImageTk objects
+        self.image1 = Image.open("image1.jpeg")
+        self.image1 = self.image1.resize((100, 100), Image.ANTIALIAS)
+        self.photo1 = ImageTk.PhotoImage(self.image1)
+
+        self.image2 = Image.open("image2.jpeg")
+        self.image2 = self.image2.resize((100, 100), Image.ANTIALIAS)
+        self.photo2 = ImageTk.PhotoImage(self.image2)
 
         self.create_menu()
         self.show_login()
 
-# Create the main menu for navigation
+    # Create the main menu for navigation
     def create_menu(self):
         menubar = tk.Menu(self.root)
         file_menu = tk.Menu(menubar, tearoff=0)
@@ -37,26 +47,30 @@ class NenesKitchenOrderingSystem:
         menubar.add_cascade(label="File", menu=file_menu)
         self.root.config(menu=menubar)
 
-# Display the login window
+    # Display the login window
     def show_login(self):
         self.clear_frame()
         login_frame = tk.Frame(self.root)
         login_frame.pack(pady=100)
 
+        # Display image1 in login window
+        image_label = tk.Label(login_frame, image=self.photo1)
+        image_label.grid(row=0, column=0, rowspan=3, padx=20)
+
         username_label = tk.Label(login_frame, text="Username")
-        username_label.grid(row=0, column=0)
+        username_label.grid(row=0, column=1)
         self.username_entry = tk.Entry(login_frame)
-        self.username_entry.grid(row=0, column=1)
+        self.username_entry.grid(row=0, column=2)
 
         password_label = tk.Label(login_frame, text="Password")
-        password_label.grid(row=1, column=0)
+        password_label.grid(row=1, column=1)
         self.password_entry = tk.Entry(login_frame, show="*")
-        self.password_entry.grid(row=1, column=1)
+        self.password_entry.grid(row=1, column=2)
 
         login_button = tk.Button(login_frame, text="Log In", command=self.login)
-        login_button.grid(row=2, column=1)
+        login_button.grid(row=2, column=2)
 
-# Login validation and navigation to home window
+    # Login validation and navigation to home window
     def login(self):
         username = self.username_entry.get()
         password = self.password_entry.get()
@@ -66,13 +80,20 @@ class NenesKitchenOrderingSystem:
         else:
             self.show_home()
 
-# Display the home window with menu items
+    # Display the home window with menu items
     def show_home(self):
         self.clear_frame()
 
         home_frame = tk.Frame(self.root)
         home_frame.pack(pady=20)
 
+        # Display image2 in home window
+        image_label = tk.Label(home_frame, image=self.photo2)
+        image_label.grid(row=0)
+
+        # Display image2 in home window
+        image_label = tk.Label(home_frame, image=self.photo2)
+        image_label.grid
         welcome_label = tk.Label(home_frame, text="Welcome to Nenes Kitchen!", font=("Helvetica", 16))
         welcome_label.grid(row=0, column=1)
 
