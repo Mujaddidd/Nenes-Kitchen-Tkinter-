@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 from PIL import Image, ImageTk
+import re
 
 # MenuItem class to store menu item details
 class MenuItem:
@@ -26,11 +27,11 @@ class NenesKitchenOrderingSystem:
 
         # Load images and create ImageTk objects
         self.image1 = Image.open("image1.jpeg")
-        self.image1 = self.image1.resize((100, 100), Image.ANTIALIAS)
+        self.image1 = self.image1.resize((100, 100), Image.LANCZOS)
         self.photo1 = ImageTk.PhotoImage(self.image1)
 
         self.image2 = Image.open("image2.jpeg")
-        self.image2 = self.image2.resize((100, 100), Image.ANTIALIAS)
+        self.image2 = self.image2.resize((100, 100), Image.LANCZOS)
         self.photo2 = ImageTk.PhotoImage(self.image2)
 
         self.create_menu()
