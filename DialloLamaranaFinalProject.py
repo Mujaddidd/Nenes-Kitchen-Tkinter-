@@ -75,10 +75,22 @@ class NenesKitchenOrderingSystem:
         username = self.username_entry.get()
         password = self.password_entry.get()
 
-        if not username or not password:
-            messagebox.showerror("Error", "Please enter both username and password.")
+        if not self.validate_username(username) or not self.validate_password(password):
+            messagebox.showerror("Error", "Invalid username or password.")
         else:
             self.show_home()
+
+    # Function to validate the entered username
+    def validate_username(self, username):
+        if len(username) < 3 or len(username) > 20:
+            return False
+        return True
+
+    # Function to validate the entered password
+    def validate_password(self, password):
+        if len(password) < 8 or len(password) > 50:
+            return False
+        return True
 
     # Display the home window with menu items
     def show_home(self):
@@ -141,12 +153,22 @@ class NenesKitchenOrderingSystem:
         card_number = self.card_number_entry.get()
         cvv = self.cvv_entry.get()
 
- # Check if both card number and CVV are entered, else show an error message
-        if not card_number or not cvv:
-            messagebox.showerror("Error", "Please enter both card number and CVV.")
+        if not self.validate_card_number(card_number) or not self.validate_cvv(cvv):
+            messagebox.showerror("Error", "Invalid card number or CVV.")
         else:
-   # Navigate to the order confirmation window
             self.show_confirmation()
+
+    # Function to validate the entered card number
+    def validate_card_number(self, card_number):
+        if not re.match(r"^\d{13,16}$", card_number):
+            return False
+        return True
+
+    # Function to validate the entered CVV
+    def validate_cvv(self, cvv):
+        if not re.match(r"^\d{3,4}$", cvv):
+            return False
+        return True
 
 # Show the order confirmation window & Create a new frame for the confirmation window 
     def show_confirmation(self):
