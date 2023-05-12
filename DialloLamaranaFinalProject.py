@@ -167,7 +167,7 @@ class NenesKitchenOrderingSystem:
 
     # Function to validate the entered CVV
     def validate_cvv(self, cvv):
-        if not re.match(r"^\d{3,4}$", cvv):
+        if not re.match(r"^\d{3,3}$", cvv):
             return False
         return True
 
