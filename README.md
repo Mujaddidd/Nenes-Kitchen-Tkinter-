@@ -1,5 +1,9 @@
 # Nenes Kitchen Tkinter 
 
+Author:  Lamaran Diallo
+Date written: 04/01/2023 - 05/11/2023
+Assignment:   Module 8 Final Project
+
 User Manual: Nenes Kitchen Ordering System
 
 Introduction
